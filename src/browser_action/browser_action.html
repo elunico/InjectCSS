@@ -1,0 +1,47 @@
+<!doctype html>
+<style type="text/css">
+  #mainPopup {
+    padding: 10px;
+    height: 200px;
+    width: 400px;
+    font-family: "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  #main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 15px;
+    text-align: right;
+    column-gap: 15px;
+  }
+</style>
+
+
+<div id="mainPopup">
+  <h1>InjectCSS</h1>
+
+  <div id="main-grid">
+    <label for="selector">Selector</label>
+    <input type="text" name="selector" id="selector" />
+    <label for="rule">Rule (ex.<code>font-family</code>) </label>
+    <input type="text" name="rule" id="rule" />
+
+    <label for="value">Value</label>
+    <input type="text" name="value" id="value" />
+
+    <div>
+      <!-- Empty div for grid spacing -->
+    </div>
+    <input type="button" id="submit" value="Add" />
+  </div>
+  </p>
+</div>
+
+
+<script src="browser_action.js">
+
+</script>
