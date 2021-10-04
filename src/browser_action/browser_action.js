@@ -1,4 +1,27 @@
 let button = document.querySelector('#submit');
+let removeButton = document.querySelector('#remove');
+
+removeButton.onclick = function() {
+  let selectorBox = document.querySelector('#selector');
+  let selector = selectorBox.value;
+
+  chrome.tabs.query({
+    currentWindow: true,
+    active: true
+  }, function(tabs) {
+    let tab = tabs[0];
+    chrome.tabs.sendMessage(tab.id, {
+      from: 'injectcss',
+      message: 'remove',
+      selector: selector
+    }, function(response) {
+      if (response) {
+        console.log("Response recevied for remove: " + JSON.stringify(response));
+      }
+    });
+    return true;
+  });
+}
 
 button.onclick = submitRule;
 
@@ -27,9 +50,9 @@ function submitRule() {
       value: value
     }, function(response) {
       if (response) {
-        console.log("Response recevied: " + JSON.stringify(response));
+        console.log("Response recevied for inject: " + JSON.stringify(response));
       }
     });
-    return true; 
+    return true;
   });
 }

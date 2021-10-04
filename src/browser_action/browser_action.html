@@ -2,7 +2,7 @@
 <style type="text/css">
   #mainPopup {
     padding: 10px;
-    height: 200px;
+    height: 250px;
     width: 400px;
     font-family: "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif;
   }
@@ -26,17 +26,22 @@
 
   <div id="main-grid">
     <label for="selector">Selector</label>
-    <input type="text" name="selector" id="selector" />
+    <input type="text" value="*" name="selector" id="selector" />
     <label for="rule">Rule (ex.<code>font-family</code>) </label>
-    <input type="text" name="rule" id="rule" />
+    <input type="text" value="font-family" name="rule" id="rule" />
 
     <label for="value">Value</label>
     <input type="text" name="value" id="value" />
 
     <div>
       <!-- Empty div for grid spacing -->
+      <br>&nbsp;
     </div>
-    <input type="button" id="submit" value="Add" />
+    <input type="button" id="submit" value="Add Rule" />
+    <div>
+      <i>Include the rule when deleting to also remove custom styling</i>
+    </div>
+    <input type="button" id="remove" value="Delete Selector customization" />
   </div>
   </p>
 </div>
