@@ -78,15 +78,37 @@ chrome.extension.sendMessage({}, function(response) {
           });
         });
 
+        if (request.from === 'injectcss' && request.message === 'remove-all') {
 
-        let elts = document.querySelectorAll(request.selector);
-        for (let elt of elts) {
-          delete elt.style[request.rule];
+          let removed = false;
+          chrome.storage.sync.get(['rules'], (items) => {
+            console.log(items);
+            items['rules'] = [];
+
+            chrome.storage.sync.set(items, function() {
+              if (removed)
+                sendRepsonse({
+                  status: 'ok',
+                  message: 'Removed all rules'
+                });
+              else
+                sendRepsonse({
+                  status: 'ok',
+                  message: 'No rules removed'
+                });
+            });
+          });
+
+
+          let elts = document.querySelectorAll(request.selector);
+          for (let elt of elts) {
+            delete elt.style[request.rule];
+          }
+          return true;
         }
-        return true;
-      }
 
-      console.log('Listener ready!');
+        console.log('Listener ready!');
+      }
     });
   }, 10);
 });

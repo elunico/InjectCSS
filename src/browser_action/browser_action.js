@@ -1,5 +1,24 @@
 let button = document.querySelector('#submit');
 let removeButton = document.querySelector('#remove');
+let removeAllButton = document.querySelector('#remove-all');
+
+removeButton.onclick = function() {
+  chrome.tabs.query({
+    currentWindow: true,
+    active: true
+  }, function(tabs) {
+    let tab = tabs[0];
+    chrome.tabs.sendMessage(tab.id, {
+      from: 'injectcss',
+      message: 'remove-all',
+    }, function(response) {
+      if (response) {
+        console.log("Response message for remove all: " + JSON.stringify(response));
+      }
+    });
+    return true;
+  });
+}
 
 removeButton.onclick = function() {
   let selectorBox = document.querySelector('#selector');
